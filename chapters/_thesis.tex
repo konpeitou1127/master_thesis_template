@@ -1,0 +1,77 @@
+%\documentclass[uplatex,dvipdfmx-if-dvi,ja=standard,enablejfam=true,openany,a4paper,12pt]{jsbook}
+
+\documentclass[openany,12pt]{jsbook}
+%参考文献にリンクをつける
+\usepackage{hyperref}
+% ハイパーリンクの色を無効に
+%\hypersetup{colorlinks=false}
+%目次のしおり作成
+\usepackage{pxjahyper}
+%分割コンパイル有効
+\usepackage{subfiles}
+%ベクトル表記を太字に
+\usepackage{bm}
+%本文,数式のフォントをTimes系に
+%\usepackage{newtxtext,newtxmath}
+\usepackage{newtxtext}
+%文字の装飾関係らしい
+\usepackage{textcomp}
+%画像の読み込み
+\usepackage[dvipdfmx]{graphicx}
+%行間の調整が行えるパッケージ
+\usepackage{setspace}
+%高度な数式を扱えるパッケージ
+\usepackage{amsmath,amssymb}
+\usepackage{cite}
+%サブキャプションの設定
+%例　図1(a)
+\usepackage[font=small,labelsep=quad,subrefformat=parens]{subcaption}
+\captionsetup{font=small,labelsep=quad}
+
+%自分のstyファイルの有効
+\usepackage{../mysty/mysty}
+\usepackage{../mysty/remreset}
+%図番号、式番号とかを通し番号にする処理
+\makeatletter
+    \@removefromreset{figure}{chapter}
+    \def\thefigure{\arabic{figure}}
+    \@removefromreset{table}{chapter}
+    \def\thetable{\arabic{table}}
+    \@removefromreset{equation}{chapter}
+    \def\theequation{\arabic{equation}}
+\makeatother
+
+%その他マクロ
+\def\Secref#1{\textbf{\ref{#1}}}
+\def\Figref#1{図\ref{#1}}
+\def\Subref#1#2{図\ref{#1}\subref{#1#2}}
+\def\Tblref#1{表\ref{#1}}
+\def\Eqnref#1{式(\ref{#1})}
+
+\begin{document}
+% 表紙，目次，図目次，表目次
+ \frontmatter
+ \subfile{./front/frontmatter}
+
+ % 紙に印刷して校正するために行間を開ける
+ % \setlength{\baselineskip}{1cm}
+
+ % 本文
+ \mainmatter
+ \subfile{./chapters/chapter1}
+ \subfile{./chapters/chapter2}
+ \subfile{./chapters/chapter3}
+ \subfile{./chapters/chapter4}
+ \subfile{./chapters/chapter5}
+ \subfile{./chapters/chapter6}
+
+ % 付録
+ \appendix
+ \subfile{./appendix/appendix1}
+ \subfile{./appendix/appendix2}
+
+ % 謝辞，参考文献，研究業績
+ \backmatter
+ \subfile{./back/backmatter}
+
+\end{document}
