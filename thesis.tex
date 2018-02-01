@@ -1,8 +1,6 @@
-%\documentclass[uplatex,dvipdfmx-if-dvi,ja=standard,enablejfam=true,openany,a4paper,12pt]{jsbook}
-
 \documentclass[openany,12pt，dvipdfmx]{jsbook}
 %参考文献にリンクをつける
-\usepackage{hyperref}
+\usepackage[dvipdfmx]{hyperref}
 % ハイパーリンクの色を無効に
 %\hypersetup{colorlinks=false}
 %目次のしおり作成
@@ -17,7 +15,7 @@
 %文字の装飾関係らしい
 \usepackage{textcomp}
 %画像の読み込み
-\usepackage{graphicx, color}
+\usepackage[dvipdfmx]{graphicx, color}
 %行間の調整が行えるパッケージ
 \usepackage{setspace}
 %高度な数式を扱えるパッケージ
@@ -26,18 +24,17 @@
 \usepackage{cite}
 %表のセルの縦の結合
 \usepackage{multirow}
-%\usepackage{mediabb}
 %サブキャプションの設定
 %例　図1(a)
 \usepackage[font=small,labelsep=quad]{subcaption}
 \captionsetup{font=small,labelsep=quad}
-\DeclareCaptionLabelFormat{opening}{（#2）}
+\DeclareCaptionLabelFormat{opening}{\hspace{-0.4cm}（#2）}
 \captionsetup[sub]{labelformat=opening,subrefformat=opening}
 %自分のstyファイルの有効
 \usepackage{./mysty/mysty}
 \usepackage{./mysty/remreset}
 \usepackage{./mysty/bxslashcell}
-\makeatletter
+%図を通し番号にする設定\makeatletter
     \@removefromreset{figure}{chapter}
     \def\thefigure{\arabic{figure}}
     \@removefromreset{table}{chapter}
@@ -45,6 +42,9 @@
     \@removefromreset{equation}{chapter}
     \def\theequation{\arabic{equation}}
 \makeatother
+%jsbookを中央揃えのレイアウトに設定
+\setlength{\textwidth}{\fullwidth}
+\setlength{\evensidemargin}{\oddsidemargin}
 
 \def\Secref#1{\textbf{\ref{#1}}}
 \def\Figref#1{図\ref{#1}}
